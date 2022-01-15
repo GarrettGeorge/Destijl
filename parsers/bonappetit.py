@@ -7,6 +7,8 @@ def parse(html):
     
     # Get ingredients
     
+    title = soup.find(attrs={'data-testid': "ContentHeaderHed"}).get_text()
+
     # We can't drill down to the list immediately because the yield is
     # a sibling
     ingredientList = soup.find(attrs={'data-testid': "IngredientList"})
@@ -17,12 +19,16 @@ def parse(html):
     descriptions = ingredientList.find_all(class_=re.compile('Description-'))
     
     recipe = {
+        'title': title,
         'yield': recipe_yield.get_text(),
-        'ingredients': {},
+        'ingredients': [],
         'steps': [],
     }
     for i in range(len(amounts)):
-        recipe["ingredients"][descriptions[i].get_text()] = amounts[i].get_text()
+        recipe['ingredients'].append({
+            'amount': amounts[i].get_text(),
+            'description': descriptions[i].get_text()
+        })
 
     #  Get steps
     steps = soup.find(class_=re.compile('InstructionGroupWrapper-'))\
