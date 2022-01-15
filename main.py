@@ -1,6 +1,6 @@
 import sys
 
-import webserver
+import webserver.webserver as webserver
 import cli
 
 opts = {
@@ -18,10 +18,10 @@ def parseArgs(args):
 def main():
     parseArgs(sys.argv[1:])
 
-    # Default to running as CLI
-    if "webserver" in opts["flags"] == True:
+    if "webserver" in opts["flags"]:
         webserver.run()
     else:
+        # Default to running as CLI
         cli.run(opts)
 
 main()
