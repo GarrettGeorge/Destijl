@@ -1,0 +1,10 @@
+setup(
+    name='recipe_to_json',
+    version='0.0.1',
+    description='',
+    url='',
+    packages=['parsers'],
+    scripts=['main.py'],
+    install_requires=[],
+    python_requires='>=3.6',
+)
