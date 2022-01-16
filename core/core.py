@@ -5,6 +5,7 @@ import requests
 
 import parsers.bonappetit as bonappetit
 import parsers.allrecipes as allrecipes
+import parsers.foodnetwork as foodnetwork
 from .validate import urlScheme, supportedSite, ValidateError
 
 def validateUrl(url):
@@ -35,6 +36,9 @@ def getJson(url):
         data = bonappetit.parse(getHtml(url))
     elif domain == "allrecipes":
         data = allrecipes.parse(getHtml(url))
+    elif domain == "foodnetwork":
+        data = foodnetwork.parse(getHtml(url))
+    
     
     print(json.dumps(data, indent=2, ensure_ascii=False))
     return data

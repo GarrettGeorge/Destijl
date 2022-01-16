@@ -12,7 +12,7 @@ class ValidateError(Error):
 def urlScheme(url):
     return validators.url(url)
 
-supported_sites = ["bonappetit", "allrecipes"]
+supported_sites = ["bonappetit", "allrecipes", "foodnetwork"]
 
 def supportedSite(url):
     if not urlparse(url).netloc.split(".")[-2] in supported_sites:
