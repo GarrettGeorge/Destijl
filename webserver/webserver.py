@@ -9,11 +9,15 @@ def hello_world():
 
 @app.route('/<path:path>')
 def handleRecipeUrl(path):
-    recipeJson = core.getJson(path)
-    metadata = {
-        'recipeUrl': path,
-    }
-    return render_template('recipe.html', metadata=metadata, recipe=recipeJson)
+    try:
+        recipeJson = core.getJson(path)
+        metadata = {
+            'recipeUrl': path,
+        }
+        return render_template('recipe.html', metadata=metadata, recipe=recipeJson)
+    except Exception as err:
+        print(err)
+        return render_template('error.html')
 
 def run():
     app.run(port=8123)
