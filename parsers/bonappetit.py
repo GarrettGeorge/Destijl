@@ -22,7 +22,7 @@ def parse(html):
         'title': title,
         'yield': recipe_yield.get_text(),
         'ingredients': [],
-        'steps': [],
+        'instructions': [],
     }
     for i in range(len(amounts)):
         recipe['ingredients'].append({
@@ -30,10 +30,10 @@ def parse(html):
             'description': descriptions[i].get_text()
         })
 
-    #  Get steps
-    steps = soup.find(class_=re.compile('InstructionGroupWrapper-'))\
+    #  Get instructions
+    instructions = soup.find(class_=re.compile('InstructionGroupWrapper-'))\
         .find_all(class_=re.compile('InstructionBody-'))
-    for s in steps:
-        recipe['steps'].append(s.get_text())
+    for s in instructions:
+        recipe['instructions'].append(s.get_text())
 
     return recipe

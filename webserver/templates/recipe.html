@@ -1,16 +1,33 @@
 <html>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <head>
     <title>{{ recipe.title }}</title>
   </head>
   <body>
-    <h1>{{ recipe.title }}</h1>
-    <h2>Ingredients</h2>
-    {% for ingredient in recipe.ingredients %}
-        <p>{{ ingredient.amount }} - {{ ingredient.description }}</p>
-    {% endfor %}
-    <h2>Steps</h2>
-    {% for step in recipe.steps %}
-        <p>{{ step }}</p>
-    {% endfor %}
+    <div class="body-wrapper">
+      <div class="recipe-title-wrapper">
+        <div class="recipe-title">{{ recipe.title }}</div>
+      </div>
+      <div class="recipe-body-wrapper">
+        <div class="ingredients">
+          <h2>Ingredients</h2>
+          <hr>
+          {% for ingredient in recipe.ingredients %}
+              <p>{{ ingredient.amount }} {{ ingredient.description }}</p>
+          {% endfor %}
+        </div>
+        <div class="instructions">
+          <h2>Instructions</h2>
+          <hr>
+          {% for instruct in recipe.instructions %}
+              <p class="instruction-step-header">Step {{ loop.index }}</p>
+              <p class="instruction-step-content">{{ instruct }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </body>
 </html>

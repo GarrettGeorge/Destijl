@@ -14,7 +14,7 @@ def validateUrl(url):
         for validator in vs:
             valid = validator(url)
             if not valid:
-                raise ValidateError("Failed to validate url!")
+                raise ValidateError("Failed to validate url, {}".format(url))
     except ValidateError as err:
         print("Error: {}".format(err))
         quit()

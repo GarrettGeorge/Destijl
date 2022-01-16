@@ -12,7 +12,7 @@ def parse(html):
     recipe = {
         'yield': '',
         'ingredients': [],
-        'steps': [],
+        'instructions': [],
     }
 
     for item in pageJson:
