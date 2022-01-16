@@ -8,15 +8,18 @@ def parse(html):
     
     ingredientList = soup.find('script').contents[0]
     pageJson = json.loads(ingredientList)
-
     recipe = {
+        'title': '',
         'yield': '',
         'ingredients': [],
         'instructions': [],
     }
 
     for item in pageJson:
-        if "recipeIngredient" in item:
-            recipe['ingredients'].append(item['recipeIngredient'])  
+        if item['@type'] == "Recipe":
+            recipe['title'] = item['name']
+            recipe['yield'] = item['recipeYield']
+            recipe['ingredients'] = item['recipeIngredient']
+            recipe['instructions'] = list(map(lambda i: i['text'], item['recipeInstructions']))
 
     return recipe
