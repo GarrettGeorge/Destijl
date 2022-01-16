@@ -16,7 +16,8 @@ supported_sites = [
     "bonappetit",
     "allrecipes",
     "foodnetwork",
-    "themediterraneandish"
+    "themediterraneandish",
+    "epicurious"
 ]
 
 def supportedSite(url):

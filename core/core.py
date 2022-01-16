@@ -7,6 +7,7 @@ import parsers.bonappetit as bonappetit
 import parsers.allrecipes as allrecipes
 import parsers.foodnetwork as foodnetwork
 import parsers.themediterraneandish as themediterraneandish
+import parsers.epicurious as epicurious
 from .validate import urlScheme, supportedSite, ValidateError
 
 def validateUrl(url):
@@ -41,7 +42,8 @@ def getJson(url):
         data = foodnetwork.parse(getHtml(url))
     elif domain == "themediterraneandish":
         data = themediterraneandish.parse(getHtml(url))
-    
-    
+    elif domain == "epicurious":
+        data = epicurious.parse(getHtml(url))
+
     print(json.dumps(data, indent=2, ensure_ascii=False))
     return data

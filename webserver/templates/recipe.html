@@ -17,7 +17,7 @@
           <h2>Ingredients</h2>
           <hr>
           {% for ingredient in recipe.ingredients %}
-              <p>{{ ingredient }}</p>
+              <p>{{ ingredient[0] | upper }}{{ ingredient[1:]}}</p>
           {% endfor %}
         </div>
         <div class="instructions">
