@@ -25,10 +25,7 @@ def parse(html):
         'instructions': [],
     }
     for i in range(len(amounts)):
-        recipe['ingredients'].append({
-            'amount': amounts[i].get_text(),
-            'description': descriptions[i].get_text()
-        })
+        recipe['ingredients'].append("{} {}".format(amounts[i].get_text(), descriptions[i].get_text()))
 
     #  Get instructions
     instructions = soup.find(class_=re.compile('InstructionGroupWrapper-'))\
